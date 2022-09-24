@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style/scrollbar.css">
+    <link rel="stylesheet" href="./style/json.css">
+    <link rel="stylesheet" href="./style/form.css">
+    <link rel="stylesheet" href="./style/body.css">
+</head>
+<body>
+   
+    <div>
+        
+        <div id="newUser"> 
+            <h3>New User</h3>
+            <div id="inputFlex">
+                <div class="inputBox">
+                    <input type="text"  required="required" id="name">
+                    <span>First Name</span>
+                </div>
+                <div class="inputBox">
+                    <input type="text"  required="required" id="email"> 
+                    <span>Email</span>
+                </div>
+                <div class="inputBox">
+                    <input type="text"  required="required" id="avatar">
+                    <span>Avatar</span>
+                </div>
+            </div>
+            
+            
+            
+       <button id="dugme">add user</button>
+        </div>
+        <div id="user"></div>
+    </div>
+   
+    
+    <script>
+        
+         const newUser = document.getElementById("newUser")
+        const dugme = document.querySelector("#dugme")
+        const name = document.querySelector("#name")
+        const email = document.querySelector("#email")
+        const avatar = document.querySelector("#avatar")
+
+
+        //elementi za edit
+        const update_user_form = document.querySelector("#update_user_form");
+      const input_update_user_id = document.querySelector("#update_user");
+      const input_update_username = document.querySelector("#update_username");
+      const input_update_email = document.querySelector("#update_email");
+      const input_update_avatar = document.querySelector("#update_avatar");
+      const button_update = document.querySelector("#update");
+      const button_cancel = document.querySelector("#cancel");
+
+
+
+        const divUser = document.querySelector("#user")
+
+        const xhr = new XMLHttpRequest()
+        xhr.onload = () => {
+            if(xhr.status == 200 && xhr.readyState == 4) {
+                const users = JSON.parse(xhr.responseText)
+                for(let user of users) {
+
+                    divUser.innerHTML += `
+                                    
+                                        <div class="nesto">
+                                            <div class="slika"><img src="${user.avatar}" alt=""></div> 
+                                            <p><b><span>user name:</span> ${user.username}</b></p>
+                                            <p><b><span>email:</span> ${user.email}</b></p>
+
+                                            <div>
+                                            <button class="izbrisi" data-id="${user.id}">&times;</button>
+                                        </div>
+                                        <div>
+                                            <button class="edit" data-id="${user.id}">edit</button>
+                                        </div>
+                                        </div>`
+                }
+            }
+        }
+        xhr.open("GET", "http://127.0.0.1:3000")
+        xhr.send()
+
+        dugme.onclick = () => {
+            const xhr = new XMLHttpRequest()
+
+            xhr.onload = () => {
+                
+                    if(xhr.status == 200 && xhr.readyState == 4) {
+
+                        const user  = JSON.parse(xhr.responseText)
+
+                        user.innerHTML += `<div class="nesto">
+                                            <div class="slika"><img src="${user.avatar}" alt=""></div>
+                                            <p><b><span>user name:</span> ${user.username}</b></p>
+                                            <p><b><span>email:</span>${user.email}</b></p>
+
+                                            <div>
+                                            <button class="izbrisi" data-id="${user.id}">&times;</button>
+                                        </div>
+                                        <div>
+                                            <button class="edit" data-id="${user.id}">edit</button>
+                                        </div>
+                                        </div>`
+                    }
+            }
+            xhr.open("POST", "http://127.0.0.1:3000/new-user")
+            const korisnik = {
+                "username" : name.value,
+                "email" : email.value,
+                "avatar" : avatar.value
+            }
+           
+            
+            xhr.setRequestHeader("Content-Type", "application/json")
+            xhr.send(JSON.stringify(korisnik))
+        }
+
+
+        ///////brisanje korisnika
+        document.body.onclick = (e) => {
+            if(e.target.classList.contains("izbrisi")) {
+                const xhrDeltet = new XMLHttpRequest()
+
+                xhrDeltet.onload = () => {
+                    console.log(xhrDeltet.responseText)
+                }
+                xhrDeltet.open("DELETE", "http://127.0.0.1:3000/delete-user")
+                xhrDeltet.setRequestHeader("Content-Type", "application/json")
+                xhrDeltet.send(JSON.stringify({user_id: e.target.getAttribute("data-id")}))
+            }
+
+            
+        }
+
+        //vracanje na formu za novog korisnika
+        button_cancel.onclick = () => {
+            newUser.style.display = 'block'
+                update_user_form.style.display = 'none'
+        }
+
+
+
+
+
+        
+
+    </script>
+</body>
+</html>

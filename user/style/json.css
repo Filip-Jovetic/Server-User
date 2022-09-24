@@ -1,0 +1,54 @@
+
+
+#user {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    background-color: rgb(70, 69, 80);
+    width: 35rem;
+    height: 47vh;
+    overflow: scroll;
+    padding: 10px;
+}
+
+.nesto {
+    position: relative;
+    /*border: 2px solid red;*/
+    padding: 10px;
+    border-radius: 9px;
+    background-color: rgb(69, 125, 230);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.nesto img {
+    border-radius: 50%;
+}
+.nesto p {
+    color: rgb(247, 242, 242);
+    padding-bottom: 20px;
+
+}
+.nesto span {
+    color: #25384d;
+}
+.nesto button {
+    width: 2.2em;
+    height: 2.2em;
+   
+    border: none;
+    font-weight: 900;
+    cursor: pointer;
+    
+}
+
+
+
+
+.izbrisi {
+    position: absolute;
+    top: 0; left: 0;
+    border-radius: 50%;
+}

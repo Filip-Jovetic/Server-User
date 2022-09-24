@@ -1,0 +1,89 @@
+#newUser {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+#newUser h3 {
+    color: #00dfc4;
+}
+
+#inputFlex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+/*inputs*/
+
+
+.inputBox {
+    position: relative;
+    width: 250px;
+}
+.inputBox input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgba(225, 225, 225, 0.25);
+    background: #002;
+    border-radius: 6px;
+    outline: none;
+    font-size: 1em;
+    color: #fff;
+
+    transition: 0.5s all;
+}
+.inputBox span {
+    position: absolute;
+    left: 0px;
+    top: 0;
+    padding: 10px;
+    pointer-events: none;
+    color: rgba(225, 225, 225, 0.25);
+    text-transform: uppercase;
+    transition: 0.5s all ease-in;
+}
+.inputBox input:valid ~ span, 
+.inputBox input:focus ~ span {
+    color: #00dfc4;
+    transform: translate(10px, -7px);
+    font-size: 0.75em;
+    padding: 0 10px;
+    background-color: #002;
+    border-left: 1px solid #00dfc4;
+    border-right: 1px solid #00dfc4;
+    letter-spacing: 4px;
+    font-weight: 800;
+    
+}
+ 
+.inputBox input:focus,
+.inputBox input:valid  {
+    border: 1px solid #00dfc4;
+    box-shadow: 0 0 15px #70dbcf;
+}
+/*end of inputs*/
+
+#dugme {
+    padding: 1rem 3rem;
+    
+    font-weight: 800;
+    text-transform: uppercase;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: aquamarine;
+    color: #002;
+    border-radius: 20px;
+    margin-bottom: 1.5em;
+    font-size: 1em;
+
+    transition: 0.5s all ease;
+}
+#dugme:hover {
+    background-color: #002;
+    color: #00dfc4;
+    border: 2px solid #00dfc4;
+    cursor: pointer;
+}
