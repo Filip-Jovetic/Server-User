@@ -1,7 +1,7 @@
 # Server-User
 
-Server crated based on NodeJS platform using Express library
-Aplication has ability to send a data, creating a new project on a client's side and deleting certain data
+Server based on NodeJS platform using Express library.
+Appication has ability to send data, to create new profiles on client's side and it can erease existing profiles.
 
 
 # Installation
